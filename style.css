@@ -13,32 +13,38 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans Devanagari', sans-serif;
-    -webkit-tap-highlight-color: transparent; /* मोबाइल में क्लिक हाइलाइट हटाने के लिए */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    min-height: 100dvh; /* डायनामिक व्यूअर हाइट मोबाइल के लिए */
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     position: relative;
     background-color: var(--deep-maroon);
-    background-image: url('images/bg.png'); /* आपकी बैकग्राउंड इमेज */
+    
+    /* यहाँ इमेज का नाम bg.png कर दिया गया है */
+    background-image: url('images/bg.png'); 
     background-size: cover;
     background-position: center top;
-    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+    /* background-attachment: fixed; हटा दिया गया है ताकि मोबाइल में इमेज सही दिखे */
+    
     overflow-x: hidden;
 }
 
-/* बैकग्राउंड को डार्क करने के लिए ओवरले */
+/* बैकग्राउंड ओवरले - अब बहुत हल्का है ताकि इमेज दिखे */
 .bg-overlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle at center, rgba(74, 14, 78, 0.6) 0%, rgba(20, 0, 10, 0.95) 100%);
+    /* सिर्फ 30% डार्कनेस ताकि इमेज साफ दिखे और टेक्स्ट भी पढ़ा जा सके */
+    background: rgba(0, 0, 0, 0.35); 
     z-index: 1;
 }
 
-/* मुख्य कंटेनर - मोबाइल फर्स्ट */
+/* मुख्य कंटेनर */
 .container {
     width: 100%;
     max-width: 480px;
@@ -47,10 +53,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 15px 30px; /* मोबाइल के लिए सेफ पैडिंग */
+    padding: 15px 15px 30px;
 }
 
-/* हेडर टेक्स्ट (clamp का उपयोग ताकि स्क्रीन के हिसाब से साइज बदले) */
+/* हेडर टेक्स्ट */
 .hero-section { text-align: center; margin-bottom: 20px; width: 100%; }
 
 .badge {
@@ -62,21 +68,22 @@ body {
     font-size: clamp(12px, 3vw, 14px);
     font-weight: 600;
     margin-bottom: 10px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
 }
 
 .main-title {
-    font-size: clamp(30px, 9vw, 42px); /* स्क्रीन के हिसाब से फॉन्ट साइज */
+    font-size: clamp(30px, 9vw, 42px);
     font-weight: 900;
     background: linear-gradient(to bottom, #FFF7A1, #FFD700, #FF8C00);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+    /* टेक्स्ट के पीछे डार्क शैडो ताकि बैकग्राउंड में साफ दिखे */
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8)); 
     margin-bottom: 15px;
     line-height: 1.2;
 }
 
-/* नंबर बॉक्स (मोबाइल में एक लाइन में फिट होंगे) */
+/* नंबर बॉक्स (777777) */
 .number-container {
     display: flex;
     justify-content: center;
@@ -110,22 +117,24 @@ body {
     color: var(--primary-gold);
     font-size: clamp(20px, 6vw, 26px);
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.9); /* डार्क शैडो */
 }
 
 .sub-text {
-    color: #e0e0e0;
+    color: #fff;
     font-size: clamp(13px, 3.5vw, 15px);
     margin-top: 5px;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
-/* फॉर्म कार्ड (पहली इमेज जैसा क्रीम कलर) */
+/* फॉर्म कार्ड - यह सॉलिड रहेगा ताकि इनपुट साफ दिखे */
 .form-card {
     background: var(--card-bg);
     width: 100%;
     border-radius: 15px;
     padding: 20px 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 0 2px var(--dark-gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 0 2px var(--dark-gold);
     position: relative;
 }
 
@@ -150,7 +159,6 @@ body {
     font-size: 15px;
 }
 
-/* 16px फॉन्ट जरूरी है ताकि iOS सफारी में क्लिक करने पर ज़ूम न हो */
 .input-group input {
     width: 100%;
     padding: 12px 14px;
@@ -257,8 +265,14 @@ body {
 
 /* फुटर */
 footer { text-align: center; margin-top: 20px; }
-.footer-warning { color: var(--primary-gold); font-weight: 600; font-size: clamp(14px, 4vw, 16px); margin-bottom: 5px; }
-.footer-credit { color: #aaa; font-size: 11px; }
+.footer-warning { 
+    color: var(--primary-gold); 
+    font-weight: 700; 
+    font-size: clamp(14px, 4vw, 16px); 
+    margin-bottom: 5px; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.9); /* टेक्स्ट साफ दिखने के लिए */
+}
+.footer-credit { color: #ddd; font-size: 11px; text-shadow: 0 1px 2px #000; }
 
 /* टोस्ट नोटिफिकेशन */
 .toast {
@@ -274,6 +288,7 @@ footer { text-align: center; margin-top: 20px; }
     width: 90%;
     max-width: 350px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 .toast.show { top: 20px; }
 .toast.success { background: #28a745; }
