@@ -23,7 +23,7 @@ body {
     align-items: flex-start;
     position: relative;
     background-color: var(--deep-maroon);
-    background-image: url('images/bg.jpg'); /* आपकी बैकग्राउंड इमेज */
+    background-image: url('images/bg.png'); /* आपकी बैकग्राउंड इमेज */
     background-size: cover;
     background-position: center top;
     background-attachment: fixed;
